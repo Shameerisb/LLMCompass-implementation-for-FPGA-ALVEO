@@ -1,0 +1,10 @@
+This is the refernce implementation of the paper of LLMCompass on a FPGA Aluveo U280, the hardware of the ALVEO U280 FPGA and 
+the computational graph is defined and stored in the following folder 'LLMCompass -> ae -> llama2_7b'.
+
+
+The output of the ''run_llama2_unoptimized_ALVEOU100.py'' model is stored in the 'LLMCompass -> results -> llama2_sim'.
+
+The simulation_results.json contains the output of the model that is time consumed for all the operation of all the  layers in llama2_7b language model.
+
+
+Please review this github repository of original publishers of the LLMCompass paper: https://github.com/PrincetonUniversity/LLMCompass

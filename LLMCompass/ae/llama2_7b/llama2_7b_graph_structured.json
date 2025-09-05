@@ -1,0 +1,4169 @@
+{
+  "layers": [
+    {
+      "id": 0,
+      "operators": [
+        {
+          "id": 0,
+          "type": "Embedding",
+          "name": "token_embedding",
+          "shape": [
+            "B",
+            "S"
+          ],
+          "description": "Token embeddings"
+        },
+        {
+          "id": 1,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 2,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 3,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 4,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 5,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 6,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 7,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 8,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 9,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 10,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 11,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "operators": [
+        {
+          "id": 12,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 13,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 14,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 15,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 16,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 17,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 18,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 19,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 20,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 21,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 22,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "operators": [
+        {
+          "id": 23,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 24,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 25,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 26,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 27,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 28,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 29,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 30,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 31,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 32,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 33,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "operators": [
+        {
+          "id": 34,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 35,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 36,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 37,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 38,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 39,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 40,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 41,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 42,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 43,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 44,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "operators": [
+        {
+          "id": 45,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 46,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 47,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 48,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 49,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 50,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 51,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 52,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 53,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 54,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 55,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "operators": [
+        {
+          "id": 56,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 57,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 58,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 59,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 60,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 61,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 62,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 63,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 64,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 65,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 66,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "operators": [
+        {
+          "id": 67,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 68,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 69,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 70,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 71,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 72,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 73,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 74,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 75,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 76,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 77,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "operators": [
+        {
+          "id": 78,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 79,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 80,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 81,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 82,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 83,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 84,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 85,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 86,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 87,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 88,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "operators": [
+        {
+          "id": 89,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 90,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 91,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 92,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 93,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 94,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 95,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 96,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 97,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 98,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 99,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "operators": [
+        {
+          "id": 100,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 101,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 102,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 103,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 104,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 105,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 106,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 107,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 108,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 109,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 110,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "operators": [
+        {
+          "id": 111,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 112,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 113,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 114,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 115,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 116,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 117,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 118,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 119,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 120,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 121,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "operators": [
+        {
+          "id": 122,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 123,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 124,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 125,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 126,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 127,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 128,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 129,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 130,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 131,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 132,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "operators": [
+        {
+          "id": 133,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 134,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 135,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 136,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 137,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 138,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 139,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 140,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 141,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 142,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 143,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "operators": [
+        {
+          "id": 144,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 145,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 146,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 147,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 148,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 149,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 150,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 151,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 152,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 153,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 154,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "operators": [
+        {
+          "id": 155,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 156,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 157,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 158,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 159,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 160,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 161,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 162,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 163,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 164,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 165,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "operators": [
+        {
+          "id": 166,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 167,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 168,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 169,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 170,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 171,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 172,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 173,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 174,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 175,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 176,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "operators": [
+        {
+          "id": 177,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 178,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 179,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 180,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 181,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 182,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 183,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 184,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 185,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 186,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 187,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "operators": [
+        {
+          "id": 188,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 189,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 190,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 191,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 192,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 193,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 194,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 195,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 196,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 197,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 198,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "operators": [
+        {
+          "id": 199,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 200,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 201,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 202,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 203,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 204,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 205,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 206,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 207,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 208,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 209,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "operators": [
+        {
+          "id": 210,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 211,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 212,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 213,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 214,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 215,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 216,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 217,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 218,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 219,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 220,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "operators": [
+        {
+          "id": 221,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 222,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 223,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 224,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 225,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 226,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 227,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 228,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 229,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 230,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 231,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "operators": [
+        {
+          "id": 232,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 233,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 234,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 235,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 236,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 237,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 238,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 239,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 240,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 241,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 242,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "operators": [
+        {
+          "id": 243,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 244,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 245,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 246,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 247,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 248,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 249,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 250,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 251,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 252,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 253,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "operators": [
+        {
+          "id": 254,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 255,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 256,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 257,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 258,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 259,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 260,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 261,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 262,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 263,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 264,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "operators": [
+        {
+          "id": 265,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 266,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 267,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 268,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 269,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 270,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 271,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 272,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 273,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 274,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 275,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "operators": [
+        {
+          "id": 276,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 277,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 278,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 279,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 280,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 281,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 282,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 283,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 284,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 285,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 286,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "operators": [
+        {
+          "id": 287,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 288,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 289,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 290,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 291,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 292,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 293,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 294,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 295,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 296,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 297,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "operators": [
+        {
+          "id": 298,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 299,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 300,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 301,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 302,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 303,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 304,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 305,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 306,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 307,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 308,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "operators": [
+        {
+          "id": 309,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 310,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 311,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 312,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 313,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 314,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 315,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 316,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 317,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 318,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 319,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "operators": [
+        {
+          "id": 320,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 321,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 322,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 323,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 324,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 325,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 326,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 327,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 328,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 329,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 330,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "operators": [
+        {
+          "id": 331,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 332,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 333,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 334,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 335,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 336,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 337,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 338,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 339,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 340,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 341,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "operators": [
+        {
+          "id": 342,
+          "type": "LayerNorm",
+          "name": "ln_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 343,
+          "type": "Matmul",
+          "name": "qkv_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": "QKV combined projection"
+        },
+        {
+          "id": 344,
+          "type": "Matmul",
+          "name": "qk_matmul",
+          "shape": [
+            "B",
+            32,
+            "S",
+            128
+          ],
+          "description": "Q \u00b7 K^T"
+        },
+        {
+          "id": 345,
+          "type": "Softmax",
+          "name": "softmax_attn",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": ""
+        },
+        {
+          "id": 346,
+          "type": "Matmul",
+          "name": "attn_v",
+          "shape": [
+            "B",
+            32,
+            "S",
+            "S"
+          ],
+          "description": "Attention weights \u00d7 V"
+        },
+        {
+          "id": 347,
+          "type": "Matmul",
+          "name": "attn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 348,
+          "type": "All-Reduce",
+          "name": "allreduce_attn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 349,
+          "type": "LayerNorm",
+          "name": "ln_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 350,
+          "type": "Matmul",
+          "name": "ffn_in_proj",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 351,
+          "type": "Matmul",
+          "name": "ffn_out_proj",
+          "shape": [
+            "B",
+            "S",
+            11008
+          ],
+          "description": ""
+        },
+        {
+          "id": 352,
+          "type": "All-Reduce",
+          "name": "allreduce_ffn",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "operators": [
+        {
+          "id": 353,
+          "type": "LayerNorm",
+          "name": "final_ln",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        },
+        {
+          "id": 354,
+          "type": "Matmul",
+          "name": "lm_head",
+          "shape": [
+            "B",
+            "S",
+            4096
+          ],
+          "description": ""
+        }
+      ]
+    }
+  ]
+}
