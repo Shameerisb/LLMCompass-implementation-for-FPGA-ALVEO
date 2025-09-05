@@ -40,7 +40,7 @@ This repository contains the implementation of **LLMCompass** for FPGA using the
 This implementation is inspired by and builds upon the original **LLMCompass** research.  
 Please refer to the official publication and repository for the full methodology and detailed explanations:
 
-- **Research Paper**: [LLMCompass: Navigating Efficient Large Language Model Inference via Tensor Programs on FPGAs](https://arxiv.org/abs/2405.14187)  
+- **Research Paper**: [LLMCompass: Navigating Efficient Large Language Model Inference via Tensor Programs on FPGAs](https://arxiv.org/pdf/2401.03868)  
 - **Official GitHub Repository**: [PrincetonUniversity/LLMCompass](https://github.com/PrincetonUniversity/LLMCompass)
 
 All credit for the original design and concepts goes to the authors of the LLMCompass paper.  
