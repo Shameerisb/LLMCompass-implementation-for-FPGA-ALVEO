@@ -35,7 +35,21 @@ This repository contains the implementation of **LLMCompass** for FPGA using the
 5. Dive into **Simulation Report** for performance evaluation and practical observations.
 
 
+## References & Credits
+
+This implementation is inspired by and builds upon the original **LLMCompass** research.  
+Please refer to the official publication and repository for the full methodology and detailed explanations:
+
+- **Research Paper**: [LLMCompass: Navigating Efficient Large Language Model Inference via Tensor Programs on FPGAs](https://arxiv.org/abs/2405.14187)  
+- **Official GitHub Repository**: [PrincetonUniversity/LLMCompass](https://github.com/PrincetonUniversity/LLMCompass)
+
+All credit for the original design and concepts goes to the authors of the LLMCompass paper.  
+This repository provides a **reference implementation for the ALVEO U280 FPGA**, specifically demonstrating the computational graph of **LLaMA-2-7B**.  
+
+
 ---
 
 Thank you for checking out this project! Let me know if you’d like help expanding any section—such as setup instructions, system requirements, or usage examples.
 ::contentReference[oaicite:0]{index=0}
+
+
